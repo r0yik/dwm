@@ -13,8 +13,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 15;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 
-static const char *fonts[]          = { "JetBrains Mono Medium:size=8", 
-                                        "JoyPixels:pixelsize=9:antialias=true:autohint=true", 
+static const char *fonts[]          = { "JetBrains Mono Medium:size=9",
                                         "FiraCode Nerd Font:size=9:antialias=true:autohint=true" };
 
 static const char norm_fg[]                     = "#cccccc";
