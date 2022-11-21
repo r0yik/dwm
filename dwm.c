@@ -272,9 +272,9 @@ static Client *wintosystrayicon(Window w);
 static void scratchpad_add ();
 static _Bool scratchpad_last_showed_is_killed (void);
 static void scratchpad_remove ();
-static void scratchpad_show ();
-static void scratchpad_show_client (Client * c);
-static void scratchpad_show_first (void);
+static void scratchpad_toggle ();
+static void scratchpad_toggle_client (Client * c);
+static void scratchpad_toggle_first (void);
 
 
 /* variables */
@@ -1702,10 +1702,10 @@ static void scratchpad_remove ()
 		scratchpad_last_showed = NULL;
 }
 
-static void scratchpad_show ()
+static void scratchpad_toggle ()
 {
 	if (scratchpad_last_showed == NULL || scratchpad_last_showed_is_killed ())
-		scratchpad_show_first ();
+		scratchpad_toggle_first ();
 	else
 	{
 		if (scratchpad_last_showed -> tags != SCRATCHPAD_MASK)
@@ -1733,17 +1733,17 @@ static void scratchpad_show ()
 					if (c -> tags == SCRATCHPAD_MASK)
 					{
 						found_next = 1;
-						scratchpad_show_client (c);
+						scratchpad_toggle_client (c);
 						break;
 					}
 				}
 			}
-			if (found_next == 0) scratchpad_show_first ();
+			if (found_next == 0) scratchpad_toggle_first ();
 		}
 	}
 }
 
-static void scratchpad_show_client (Client * c)
+static void scratchpad_toggle_client (Client * c)
 {
 	scratchpad_last_showed = c;
 	c -> tags = selmon->tagset[selmon->seltags];
@@ -1751,13 +1751,13 @@ static void scratchpad_show_client (Client * c)
 	arrange(selmon);
 }
 
-static void scratchpad_show_first (void)
+static void scratchpad_toggle_first (void)
 {
 	for (Client * c = selmon -> clients; c != NULL; c = c -> next)
 	{
 		if (c -> tags == SCRATCHPAD_MASK)
 		{
-			scratchpad_show_client (c);
+			scratchpad_toggle_client (c);
 			break;
 		}
 	}
