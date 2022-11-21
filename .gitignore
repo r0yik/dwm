@@ -1,5 +1,7 @@
 # Custom file
 config.h
+*.orig
+*.rej
 
 # CLion
 .idea/
