@@ -269,7 +269,7 @@ static void updatesystray(void);
 static void updatesystrayicongeom(Client *i, int w, int h);
 static void updatesystrayiconstate(Client *i, XPropertyEvent *ev);
 static Client *wintosystrayicon(Window w);
-static void scratchpad_hide ();
+static void scratchpad_add ();
 static _Bool scratchpad_last_showed_is_killed (void);
 static void scratchpad_remove ();
 static void scratchpad_show ();
@@ -1671,7 +1671,7 @@ scan(void)
 	}
 }
 
-static void scratchpad_hide ()
+static void scratchpad_add ()
 {
 	if (selmon -> sel)
 	{
