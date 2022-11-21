@@ -17,17 +17,21 @@ static const char *fonts[]          = { "JetBrains Mono Medium:size=8",
                                         "JoyPixels:pixelsize=9:antialias=true:autohint=true", 
                                         "FiraCode Nerd Font:size=9:antialias=true:autohint=true" };
 
-static const char bg_1[]            = "#0f0f0f";
-static const char fg_1[]            = "#cccccc";
-static const char fg_2[]            = "#aa0000";
-static const char fg_3[]            = "#f0f0f0";
-static const char fg_4[]            = "#444444";
+static const char norm_fg[]                     = "#cccccc";
+static const char norm_bg[]                     = "#0f0f0f";
+static const char norm_border[]                 = "#222222";
+static const char sel_fg[]                      = "#aa0000";
+static const char sel_bg[]                      = "#0f0f0f";
+static const char sel_border[]                  = "#aa0000";
+static const char title_fg[]                    = "#f0f0f0";
+static const char title_bg[]                    = "#0f0f0f";
+static const char title_border[]                = "#222222";
 
 static const char *colors[][3]       = {
 	/*                      fg          bg          border   */
-	[SchemeNorm] =      {   fg_1,       bg_1,       fg_4  },
-	[SchemeSel]  =      {   fg_2,       bg_1,       fg_2  },
-	[SchemeTitle]  =    {   fg_3,       bg_1,       fg_4  },
+	[SchemeNorm] =      {   norm_fg,    norm_bg,    norm_border  },
+	[SchemeSel]  =      {   sel_fg,     sel_bg,     sel_border  },
+	[SchemeTitle]  =    {   title_fg,   title_bg,   title_border  },
 };
 
 static const char *const autostart[] = {
