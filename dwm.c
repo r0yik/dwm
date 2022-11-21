@@ -263,6 +263,7 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 static void shiftview(const Arg *arg);
+static void shifttag(const Arg *arg);
 static void autostart_exec(void);
 static void updatesystray(void);
 static void updatesystrayicongeom(Client *i, int w, int h);
@@ -2590,6 +2591,25 @@ shiftview(const Arg *arg) {
 		   | selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
 
 	view(&shifted);
+}
+
+void
+shifttag(const Arg *arg) {
+	Arg shifted;
+	Client *c;
+
+	if (!selmon->sel)
+		return;
+	c = selmon->sel;
+
+	if (arg->i > 0) /* left circular shift */
+		shifted.ui = (c->tags ^ (c->tags << arg->i))
+			^ (c->tags >> (LENGTH(tags) - arg->i));
+	else /* right circular shift */
+		shifted.ui = (c->tags ^ (c->tags >> (-arg->i)))
+			^ (c->tags << (LENGTH(tags) + arg->i));
+
+	toggletag(&shifted);
 }
 
 int
